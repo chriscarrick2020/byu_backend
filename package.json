@@ -2,9 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend RestAPI webservice",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "start": "mocha --exit; node app.js",
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,12 @@
   },
   "homepage": "https://github.com/chriscarrick2020/byu_backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mocha": "^8.3.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "mocha": "^8.3.0"
   }
 }

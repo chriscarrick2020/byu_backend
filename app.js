@@ -6,7 +6,7 @@ const express = require("express");
 const request = require('request');
 const cors = require('cors')
 const app = express();
-const port = 3000;
+const port = 3001;
 const API_KEY = process.env.TMDB_API_KEY;
 
 app.options('/movies', cors(), (_, res) => {
@@ -50,17 +50,22 @@ app.get('/movies', cors(), (req, res) => {
         let response_body = []
         let body_json = JSON.parse(body);
 
-        for (var i = 0; i < 10; i++) {
-            if (!body_json.results) {
+        for (var i = 0; i < 10; i++)
+        {
+            if (!body_json.results[i]) {
                 // Only add what we have. If we have less than 10 stop adding to response_body array.
                 break;
             }
 
             // Build the response object.
+            let poster_path = body_json.results[i].poster_path
+            if (poster_path != null) {
+                poster_path = `https://image.tmdb.org/t/p/w500/${body_json.results[i].poster_path}`
+            }
             response_body.push({
                 movie_id: body_json.results[i].id,
                 title: body_json.results[i].title,
-                poster_image_url: `https://image.tmdb.org/t/p/w500/${body_json.results[i].poster_path}`,
+                poster_image_url: poster_path,
                 popularity_summary: `${body_json.results[i].popularity} out of ${body_json.results[i].vote_count}`
             })
         }

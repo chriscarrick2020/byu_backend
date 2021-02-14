@@ -6,7 +6,7 @@ var expect = require("chai").expect;
 var assert = require('chai').assert;
 const request = require('request');
 
-const URL = 'http://localhost:3000/movies'
+const URL = 'http://localhost:3001/movies'
 
 
 describe("Verify ENV Vars", function() {
